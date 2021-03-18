@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour
     bool jump = false;
     bool groundCheck = true;
     bool attacking = false;
+    bool m_FacingRight = false;
     public float JumpForce = 1f;
     public Rigidbody2D rigidbody;
     public Animator animator;
+    public Health myPlayer;
 
     // Update is called once per frame
     void Update()
@@ -29,6 +31,29 @@ public class PlayerController : MonoBehaviour
             attacking = true;
             Debug.Log("Attack");
         }
+
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            myPlayer.health--;
+            Debug.Log("Lose Health");
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            myPlayer.health++;
+            Debug.Log("Gain Health");
+        }
+
+        if (movement < 0)
+        {
+            m_FacingRight = false;
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+        else if(movement > 0)
+        {
+            m_FacingRight = true;
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+
     }
 
     void FixedUpdate()
