@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float MovementSpeed = 1f;                
-    float movement;     
+    public float MovementSpeed = 1f;
+    public float Running = 1f;
+    public float _attackSpeed;
+    private float nextShootTime = 0f;
+    float movement;
     bool jump = false;
     bool groundCheck = true;
     bool attacking = false;
@@ -14,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rigidbody;
     public Animator animator;
     public Health myPlayer;
+    public Scores myScores;
+    public CircleCollider2D circle;
 
     // Update is called once per frame
     void Update()
@@ -28,19 +33,45 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            attacking = true;
-            Debug.Log("Attack");
+
+            if (Time.time > nextShootTime)
+            {
+                attacking = true;
+                circle.offset = new Vector2(2f, .23f);
+                //Debug.Log("Attack");
+                nextShootTime = Time.time + _attackSpeed;
+            }
         }
 
-        if(Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Running = 2f;
+            //Debug.Log("Running");
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            Running = 1f;
+            // Debug.Log("Stop Running");
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
         {
             myPlayer.health--;
-            Debug.Log("Lose Health");
+            //Debug.Log("Lose Health");
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
             myPlayer.health++;
-            Debug.Log("Gain Health");
+            //Debug.Log("Gain Health");
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            myPlayer.numOfHearts++;
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            myPlayer.numOfHearts--;
         }
 
         if (movement < 0)
@@ -48,7 +79,7 @@ public class PlayerController : MonoBehaviour
             m_FacingRight = false;
             transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
-        else if(movement > 0)
+        else if (movement > 0)
         {
             m_FacingRight = true;
             transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -58,8 +89,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * MovementSpeed;
-        if(jump == true)
+        transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * MovementSpeed * Running;
+
+        if (jump == true)
         {
             rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
             jump = false;
@@ -69,11 +101,13 @@ public class PlayerController : MonoBehaviour
         if (attacking)
         {
             animator.SetBool("IsAttacking", true);
-            attacking = false;          
+            attacking = false;
+     
         }
         else if (attacking == false)
         {
-            animator.SetBool("IsAttacking", false);
+                animator.SetBool("IsAttacking", false);
+                circle.offset = new Vector2(.3f, .23f);
         }
     }
 

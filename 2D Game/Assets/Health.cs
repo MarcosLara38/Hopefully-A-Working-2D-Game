@@ -20,6 +20,14 @@ public class Health : MonoBehaviour
     
     void Update()
     {
+        if(numOfHearts > 7)
+        {
+            numOfHearts = 7;
+        }
+        if(numOfHearts < 0)
+        {
+            numOfHearts = 0;
+        }
         if(health > numOfHearts*4)
         {
             health = numOfHearts*4;
@@ -30,8 +38,8 @@ public class Health : MonoBehaviour
         }
         temp = health % 4;              // value indicates what type of heart is needed
         temp2 = health / 4;            // value indicates how many full hearts
-        Debug.Log("temp" + temp);
-        Debug.Log("temp2" + temp2);      
+        //Debug.Log("temp " + temp);
+        //Debug.Log("temp2 " + temp2);      
 
         for (int i = 0; i < hearts.Length; i++)
         {               
@@ -66,20 +74,34 @@ public class Health : MonoBehaviour
                     hearts[temp2].sprite = ThreeFourthHeart;
                 }
             }
-            else if (temp2 != numOfHearts)
+            if (temp2 != numOfHearts)
             {
-                for (int i = temp2; i < numOfHearts; i++)
+                int temp3 = numOfHearts - temp2;
+                if (temp == 0)
                 {
-                    hearts[i].sprite = emptyHeart;
+                    for (int i = temp2; i < numOfHearts; i++)
+                    {
+                        hearts[i].sprite = emptyHeart;
+                    }
+                }
+                else
+                {
+                    for (int i = 1; i < temp3; i++, temp2++)
+                    {
+                        hearts[temp2+1].sprite = emptyHeart;
+                    }
                 }
             }
         } 
         else if (health == 0)
         {
-            hearts[0].sprite = emptyHeart;
+            for (int i = 0; i < numOfHearts; i++)
+            {
+                hearts[i].sprite = emptyHeart;
+                Application.LoadLevel(Application.loadedLevel);
+            }         
         }
-    
-    }
 
+    }
 
 }
