@@ -62,20 +62,20 @@ public class ItemAction : MonoBehaviour
             //Debug.Log("You tried to grab " + this.name);
             //foreach (var item in items)
             //{
-                //if (currentItem == item)
-                //{
-                    for (int i = 0; i < inventory.slots.Length; i++)
-                    {
-                        if (inventory.isFull[i] == false)
-                        {
-                            Debug.Log("The player collected the item");
-                            inventory.isFull[i] = true;
-                            Instantiate(itemButton, inventory.slots[i].transform, false);
-                            Destroy(this.gameObject);
-                            break;
-                        }
-                    }
-              //  }
+            //if (currentItem == item)
+            //{
+            for (int i = 0; i < inventory.slots.Length; i++)
+            {
+                if (inventory.isFull[i] == false)
+                {
+                    Debug.Log("The player collected the item");
+                    inventory.isFull[i] = true;
+                    Instantiate(itemButton, inventory.slots[i].transform, false);
+                    Destroy(this.gameObject);
+                    break;
+                }
+            }
+            //  }
             //}
 
         }
