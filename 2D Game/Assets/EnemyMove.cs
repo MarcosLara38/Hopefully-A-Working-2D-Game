@@ -7,7 +7,7 @@ public class EnemyMove : Enemies
     //variables
     public int _moveSpeed;
     public int _attackDamage;
-    public int _lifePoints;
+    //public int _lifePoints;
     public float _attackRadius;
     public float _attackSpeed;
     private float nextShootTime = 0f;
@@ -30,18 +30,16 @@ public class EnemyMove : Enemies
         //set the variables
         setMoveSpeed(_moveSpeed);
         setAttackDamage(_attackDamage);
-        setLifePoints(_lifePoints);
+        //setLifePoints(_lifePoints);
         setAttackRadius(_attackRadius);
         setFollowRadius(_followRadius);
     }
-
-    //When out of range stop moving
 
     // Update is called once per frame
     void Update()
     {
         //Debug.Log("lifepoints" + _lifePoints);
-        checkHealth(_lifePoints);
+        //checkHealth(_lifePoints);
 
         if (checkFollowRadius(playerTransform.position.x, transform.position.x))
         {
@@ -49,7 +47,7 @@ public class EnemyMove : Enemies
             if (playerTransform.position.x < transform.position.x)
             {
 
-                if (checkAttackRadius(playerTransform.position.x, transform.position.x) && checkAttackRadiusY(playerTransform.position.y, transform.position.y))
+                if (checkAttackRadius(playerTransform.position.x, transform.position.x))
                 {
                     if (Time.time > nextShootTime)
                     {
@@ -62,19 +60,6 @@ public class EnemyMove : Enemies
                 else
                 {
                     this.transform.position += new Vector3(-getMoveSpeed() * Time.deltaTime, 0f, 0f);
-
-                    if (this.tag == "flying enemy")
-                    {
-                        if (playerTransform.position.y > this.transform.position.y)
-                        {
-                            this.transform.position += new Vector3(0f, getMoveSpeed() * Time.deltaTime, 0f);
-                        }
-                        else if (playerTransform.position.y < this.transform.position.y)
-                        {
-                            this.transform.position += new Vector3(0f, -getMoveSpeed() * Time.deltaTime, 0f);
-                        }
-                    }
-
                     //for attack animation
                     enemyAnim.SetBool("AttackA", false);
                     //walk
@@ -86,7 +71,7 @@ public class EnemyMove : Enemies
             //if player is behind enemies
             else if (playerTransform.position.x > transform.position.x)
             {
-                if (checkAttackRadius(playerTransform.position.x, transform.position.x) && checkAttackRadiusY(playerTransform.position.y, transform.position.y))
+                if (checkAttackRadius(playerTransform.position.x, transform.position.x))
                 {
                     if (Time.time > nextShootTime)
                     {
@@ -99,18 +84,6 @@ public class EnemyMove : Enemies
                 else
                 {
                     this.transform.position += new Vector3(getMoveSpeed() * Time.deltaTime, 0f, 0f);
-                    if (this.tag == "flying enemy")
-                    {
-                        if (playerTransform.position.y > this.transform.position.y)
-                        {
-                            this.transform.position += new Vector3(0f, getMoveSpeed() * Time.deltaTime, 0f);
-                        }
-                        else if (playerTransform.position.y < this.transform.position.y)
-                        {
-                            this.transform.position += new Vector3(0f, -getMoveSpeed() * Time.deltaTime, 0f);
-                        }
-                    }
-
                     //for attack animation
                     enemyAnim.SetBool("AttackA", false);
                     //walk

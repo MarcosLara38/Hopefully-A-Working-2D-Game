@@ -9,7 +9,7 @@ public class EnemyAI : MonoBehaviour
     public Transform target;
     public float speed = 200f;
     public float nextWaypointDistance = 3f;
-    //public Animator animator;
+    public Animator animator;
     public int health;
     //public GameObject bloodEffect;
     private float dazedTime;
@@ -22,7 +22,7 @@ public class EnemyAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
-   /* // Start is called before the first frame update
+    // Start is called before the first frame update
     void Start()
     {
         seeker = GetComponent<Seeker>();
@@ -103,7 +103,7 @@ public class EnemyAI : MonoBehaviour
     {
 
     }
-   */
+
     // enemy takes damge
     public void TakeDamage(int damage) 
     {
@@ -114,7 +114,6 @@ public class EnemyAI : MonoBehaviour
         // enemy is destroy
         if (health <= 0)
         {
-            //Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
         //Debug.Log ("damage TAKEN !")
