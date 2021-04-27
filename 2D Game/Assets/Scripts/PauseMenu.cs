@@ -6,7 +6,10 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject PauseMenuUI;
-    public static bool GameIsPaused = false;
+    public GameObject OptionMenuUI;
+    public GameObject SaveMenuUI;
+    public GameObject LoadMenuUI;
+    public bool GameIsPaused = false;
 
     void Update()
     {
@@ -18,7 +21,6 @@ public class PauseMenu : MonoBehaviour
             }
             else
             {
-                Debug.Log("esc is pressed");
                 PauseGame();
             }
         }
@@ -34,6 +36,9 @@ public class PauseMenu : MonoBehaviour
     public void ResumeGame()
     {       
         PauseMenuUI.SetActive(false);
+        OptionMenuUI.SetActive(false);
+        SaveMenuUI.SetActive(false);
+        LoadMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -41,6 +46,9 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu()
     {
         PauseMenuUI.SetActive(false);
+        OptionMenuUI.SetActive(false);
+        SaveMenuUI.SetActive(false);
+        LoadMenuUI.SetActive(false);
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }

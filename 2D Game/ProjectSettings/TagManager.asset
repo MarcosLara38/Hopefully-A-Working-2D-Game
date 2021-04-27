@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - MainMenu
+  - PickableItem
+  - Trig1
+  - Trig2
+  - Trig3
+  - Trig4
   layers:
   - Default
   - TransparentFX
@@ -14,7 +20,7 @@ TagManager:
   - UI
   - 
   - 
-  - Ground
+  - Enemy
   - 
   - 
   - 
