@@ -26,13 +26,11 @@ public class PlayerController : MonoBehaviour
         movement = Input.GetAxisRaw("Horizontal");
 
         animator.SetFloat("Speed", Mathf.Abs(movement));
-        //jump
         if (Input.GetButtonDown("Jump") && Mathf.Abs(rigidbody.velocity.y) < 0.001f)
         {
             jump = true;
             groundCheck = false;
         }
-        //attack when mouse pressed
         if (Input.GetMouseButtonDown(0))
         {
 
@@ -44,36 +42,33 @@ public class PlayerController : MonoBehaviour
                 nextShootTime = Time.time + _attackSpeed;
             }
         }
-        // gain speed with using this key
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             Running = 2f;
             //Debug.Log("Running");
         }
-        // return speed to orginal when not using this key
+
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             Running = 1f;
             // Debug.Log("Stop Running");
         }
-        //lose a part of the heart
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             myPlayer.health--;
             //Debug.Log("Lose Health");
         }
-        //gain a part of the heart
         if (Input.GetKeyDown(KeyCode.E))
         {
             myPlayer.health++;
             //Debug.Log("Gain Health");
         }
-        //gain an empty heart
         if (Input.GetKeyDown(KeyCode.R))
         {
             myPlayer.numOfHearts++;
         }
-        //lose a heart
         if (Input.GetKeyDown(KeyCode.Q))
         {
             myPlayer.numOfHearts--;
@@ -95,14 +90,14 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * MovementSpeed * Running;
-        // jump
+
         if (jump == true)
         {
             rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
             jump = false;
             groundCheck = true;
         }
-        // attacking 
+
         if (attacking)
         {
             animator.SetBool("IsAttacking", true);

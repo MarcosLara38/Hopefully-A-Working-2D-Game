@@ -7,7 +7,7 @@ public class EnemyMove : Enemies
     //variables
     public int _moveSpeed;
     public int _attackDamage;
-    //public int _lifePoints;
+    public int _lifePoints;
     public float _attackRadius;
     public float _attackSpeed;
     private float nextShootTime = 0f;
@@ -30,7 +30,7 @@ public class EnemyMove : Enemies
         //set the variables
         setMoveSpeed(_moveSpeed);
         setAttackDamage(_attackDamage);
-        //setLifePoints(_lifePoints);
+        setLifePoints(_lifePoints);
         setAttackRadius(_attackRadius);
         setFollowRadius(_followRadius);
     }
@@ -38,8 +38,8 @@ public class EnemyMove : Enemies
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("lifepoints" + _lifePoints);
-        //checkHealth(_lifePoints);
+        Debug.Log("lifepoints" + _lifePoints);
+        checkHealth(_lifePoints);
 
         if (checkFollowRadius(playerTransform.position.x, transform.position.x))
         {
