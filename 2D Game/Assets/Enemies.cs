@@ -30,7 +30,7 @@ public class Enemies : MonoBehaviour
 
     public void setAttackSpeed(float attackspeed)
     {
-        attackSpeed = attackspeed;
+        attackSpeed = attackspeed;   
     }
 
     public int getMoveSpeed()
@@ -93,41 +93,14 @@ public class Enemies : MonoBehaviour
         }
     }
 
-    public bool checkFollowRadiusY(float playerPosition, float enemyPosition)
-    {
-        if (Mathf.Abs(playerPosition - enemyPosition) < followRadius)
-        {
-            //player in range
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public bool checkAttackRadiusY(float playerPosition, float enemyPosition)
-    {
-        if (Mathf.Abs(playerPosition - enemyPosition) < attackRadius)
-        {
-            //in range for attack
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
     public void checkHealth(int _health)
     {
-        Debug.Log("checked");
-        if (_health <= 0)
+        if(_health == 0)
         {
             Destroy(gameObject);
         }
     }
 
-
-
+   
 }
 

@@ -8,71 +8,18 @@ public class PlayerController : MonoBehaviour
     public float Running = 1f;
     public float _attackSpeed;
     private float nextShootTime = 0f;
-    public float Range;
-    public int attackDamage;
-    public bool WeaponType = false;
     float movement;
     bool jump = false;
     bool groundCheck = true;
     bool attacking = false;
     bool m_FacingRight = false;
-    bool lookingUP = false;
-    bool lookingDown = false;
     public float JumpForce = 1f;
     public Rigidbody2D rigidbody;
     public Animator animator;
     public Health myPlayer;
-    public CapsuleCollider2D Capsule;
-    public PlayerAttack player;
-    public PlayerData so;
+    public Scores myScores;
+    public CircleCollider2D circle;
 
-    void Start()
-    {
-        int temp = 0;
-        // NEED TO INCLUDE ADDING ENEMIES WHEN LOADING FROM MAIN MENU
-        if(SaveManager.NeedLoad == true)
-        {
-            GameObject.Find("SpawnManager").GetComponent<SpawnManager>().count = 4;//transform.childCount;
-            //GameObject.Find("SpawnManager").GetComponent<SpawnManager>().CurrentSpawned = new int[GameObject.Find("SpawnManager").GetComponent<SpawnManager>().count];
-            //GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers = new GameObject[GameObject.Find("SpawnManager").GetComponent<SpawnManager>().count];
-            GameObject.FindGameObjectWithTag("Player").GetComponent<SaveLoadAction>().MenuLoad();
-           /* GameObject.Find("SpawnManager").GetComponent<SpawnManager>().count = transform.childCount;
-            GameObject.Find("SpawnManager").GetComponent<SpawnManager>().CurrentSpawned = new int[GameObject.Find("SpawnManager").GetComponent<SpawnManager>().count];
-            GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers = new GameObject[GameObject.Find("SpawnManager").GetComponent<SpawnManager>().count];
-
-            so = SaveManager.Load();
-            myPlayer.health = so.Health;
-            myPlayer.numOfHearts = so.AmountOfHearts;
-            _attackSpeed = so.AttackSpeed;
-            attackDamage = so.AttackDamage;
-            GameObject.FindGameObjectWithTag("Player").transform.position = so.PlayerPosition;
-            /*for (int index = 0; index < 4; index++)
-            {
-                GameObject.Find("SpawnManager").GetComponent<SpawnManager>().CurrentSpawned[index] = so.currentSpawned[index];
-            }
-            for (int i = 0; i < 4; i++)
-            {
-                GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[i].GetComponent<Trigger>().enemy = so.Triggers[i];
-                GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[i].GetComponent<Trigger>().Empty = so.empty[i];
-            }
-            foreach (Vector2 positions in so.enemies)
-            {
-                Debug.Log("Spawnning an Enemy" + positions);
-                if (positions.x == 0 && positions.y == 0)
-                {
-
-                }
-                else
-                {
-                    Debug.Log()
-                    GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[temp].GetComponent<Trigger>().enemy = Instantiate(GameObject.FindGameObjectWithTag("Player").GetComponent<SaveLoadAction>().PreFab, positions, Quaternion.identity);
-                    temp++;
-                }
-            }*/
-        }
-        
-    
-    }
     // Update is called once per frame
     void Update()
     {
@@ -84,85 +31,15 @@ public class PlayerController : MonoBehaviour
             jump = true;
             groundCheck = false;
         }
+        if (Input.GetMouseButtonDown(0))
+        {
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            lookingUP = true;
-            //Debug.Log("Running");
-        }
-
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            lookingUP = false;
-            // Debug.Log("Stop Running");
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            lookingDown = true;
-            //Debug.Log("Running");
-        }
-
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            lookingDown = false;
-            // Debug.Log("Stop Running");
-        }
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.P))
-        {
-            if (WeaponType == false)
+            if (Time.time > nextShootTime)
             {
-                if (Time.time > nextShootTime)
-                {
-                    attacking = true;
-
-                    if (m_FacingRight && lookingUP == false && lookingDown == false)
-                    {
-                        player.AttackWithCircle(attackDamage, Range, 1, 0);
-                    }
-                    else if (m_FacingRight == false && lookingUP == false && lookingDown == false)
-                    {
-                        player.AttackWithCircle(attackDamage, Range, -1, 0);
-                    }
-
-                    if (lookingDown)
-                    {
-                        player.AttackWithCircle(attackDamage, Range, 0, -1.5f);
-                    }
-
-                    if (lookingUP)
-                    {
-                        player.AttackWithCircle(attackDamage, Range, 0, 1.5f);
-                    }
-                    nextShootTime = Time.time + _attackSpeed;
-                }
-            }
-            else
-            {
-                if (Time.time > nextShootTime)
-                {
-                    attacking = true;
-
-                    if (m_FacingRight && lookingUP == false && lookingDown == false)
-                    {
-                        player.Attack(attackDamage, Range, 1, 0);
-                    }
-                    else if (m_FacingRight == false && lookingUP == false && lookingDown == false)
-                    {
-                        player.Attack(attackDamage, Range, -1, 0);
-                    }
-
-                    if (lookingDown)
-                    {
-                        player.Attack(attackDamage, Range, 0, -1);
-                    }
-
-                    if (lookingUP)
-                    {
-                        player.Attack(attackDamage, Range, 0, 1);
-                    }
-                    nextShootTime = Time.time + _attackSpeed;
-                }
+                attacking = true;
+                circle.offset = new Vector2(2f, .23f);
+                //Debug.Log("Attack");
+                nextShootTime = Time.time + _attackSpeed;
             }
         }
 
@@ -183,7 +60,7 @@ public class PlayerController : MonoBehaviour
             myPlayer.health--;
             //Debug.Log("Lose Health");
         }
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             myPlayer.health++;
             //Debug.Log("Gain Health");
@@ -196,7 +73,7 @@ public class PlayerController : MonoBehaviour
         {
             myPlayer.numOfHearts--;
         }
-        
+
         if (movement < 0)
         {
             m_FacingRight = false;
@@ -225,16 +102,14 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("IsAttacking", true);
             attacking = false;
-
+     
         }
         else if (attacking == false)
         {
-            if (Time.time > nextShootTime)
-            {
                 animator.SetBool("IsAttacking", false);
-                //circle.offset = new Vector2(.3f, .23f);
-                //Capsule.enabled = false;
-            }
+                circle.offset = new Vector2(.3f, .23f);
         }
     }
+
+   
 }
