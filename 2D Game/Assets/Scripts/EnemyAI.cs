@@ -114,7 +114,6 @@ public class EnemyAI : MonoBehaviour
         // enemy is destroy
         if (health <= 0)
         {
-            //Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
         //Debug.Log ("damage TAKEN !")

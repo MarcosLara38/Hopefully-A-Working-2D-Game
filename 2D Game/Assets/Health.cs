@@ -17,7 +17,9 @@ public class Health : MonoBehaviour
     public Sprite OneHalfHeart;
     public Sprite OneFourthHeart;
     public Sprite emptyHeart;
-    
+
+    private AudioManager audioManager;
+
     void Update()
     {
         if(numOfHearts > 7)
@@ -95,6 +97,8 @@ public class Health : MonoBehaviour
         } 
         else if (health == 0)
         {
+            FindObjectOfType<AudioManager>().Play("PlayerDeath");
+            
             for (int i = 0; i < numOfHearts; i++)
             {
                 hearts[i].sprite = emptyHeart;

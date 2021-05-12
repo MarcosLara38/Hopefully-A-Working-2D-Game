@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bccc79903f6e14c9cf9a1a359369db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: {fileID: 3272349270179688116, guid: 246774d1d18ba8248baa619c617c4fdd, type: 3}
+  Item: {fileID: 3272349270179688116, guid: c513e0046baf6354f9872af2393c1477, type: 3}
   newObj: {fileID: 0}
   slot: {fileID: 0}
   inventory: {fileID: 0}
@@ -159,4 +159,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b3aa244d121014c8e7fcf4c6a0220c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: {fileID: 3272349270179688116, guid: 246774d1d18ba8248baa619c617c4fdd, type: 3}
+  Item: {fileID: 3272349270179688116, guid: c513e0046baf6354f9872af2393c1477, type: 3}

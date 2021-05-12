@@ -45,7 +45,6 @@ public class ItemAction : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
-        Debug.Log("The player left the item");
         if (this.gameObject.tag == "PickableItem")
         {
             thisText.text = "";
@@ -58,24 +57,17 @@ public class ItemAction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && InsideAItem == true)
         {
-            //string currentItem = this.name;
-            //Debug.Log("You tried to grab " + this.name);
-            //foreach (var item in items)
-            //{
-            //if (currentItem == item)
-            //{
-            for (int i = 0; i < inventory.slots.Length; i++)
-            {
-                if (inventory.isFull[i] == false)
-                {
-                    Debug.Log("The player collected the item");
-                    inventory.isFull[i] = true;
-                    Instantiate(itemButton, inventory.slots[i].transform, false);
-                    Destroy(this.gameObject);
-                    break;
-                }
-            }
-            //  }
+                    for (int i = 0; i < inventory.slots.Length; i++)
+                    {
+                        if (inventory.isFull[i] == false)
+                        {
+                            inventory.isFull[i] = true;
+                            Instantiate(itemButton, inventory.slots[i].transform, false);
+                            Destroy(this.gameObject);
+                            break;
+                        }
+                    }
+              //  }
             //}
 
         }

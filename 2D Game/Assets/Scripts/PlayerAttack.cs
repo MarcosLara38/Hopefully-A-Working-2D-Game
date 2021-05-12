@@ -34,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
     {
         Vector2 playerPosition = new Vector2(this.transform.position.x + Xdir, this.transform.position.y + Ydir);
         float radius = .75f;
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(playerPosition, radius);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(playerPosition, _range);
 
         if (hitColliders != null)
         {
@@ -50,7 +50,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
-
+    /*
     private float timeBtwAttack;
     public float startTimeBtwAttack;
     public LayerMask whatIsEnemies;
@@ -87,5 +87,5 @@ public class PlayerAttack : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(attackPos.position, attackRange);
         }
-    }
+    }*/
 }
