@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5477795361430635151
+--- !u!1 &2154430132839132064
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5477795361430635145}
-  - component: {fileID: 5477795361430635144}
+  - component: {fileID: 5507811403825935615}
+  - component: {fileID: 7763870045009998679}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5477795361430635145
+--- !u!4 &5507811403825935615
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5477795361430635151}
+  m_GameObject: {fileID: 2154430132839132064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,21 +31,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5477795361430635144
+--- !u!114 &7763870045009998679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5477795361430635151}
+  m_GameObject: {fileID: 2154430132839132064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e4d49d5f689157448f5d5cf7a5aeb30, type: 3}
+  m_Script: {fileID: 11500000, guid: 7770c0f6d97932b4f97dd52995fcbb9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
   - name: Music
-    clip: {fileID: 8300000, guid: 0e1d8262c454cc1448b7302f863df426, type: 3}
+    clip: {fileID: 8300000, guid: ad7e1d24fc0102945a81264d704f202f, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: PlayerDeath
+    clip: {fileID: 8300000, guid: ee0b5a5e696fae048a843e602fe25c00, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CheckPointPing
+    clip: {fileID: 8300000, guid: 015bd4daf56134b40a2ebf9053a4ab09, type: 3}
     volume: 0.7
     pitch: 1
     loop: 0
