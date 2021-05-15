@@ -13,7 +13,9 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gm.lastCheckPointPos = transform.position;
+            //gm.lastCheckPointPos = transform.position;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<SaveLoadAction>().AutoSave();
+
         }
     }
 }

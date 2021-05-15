@@ -9,13 +9,13 @@ public class PlayerPos : MonoBehaviour
     void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-        transform.position = gm.lastCheckPointPos;
+        //transform.position = gm.lastCheckPointPos;
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.T)) 
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);//, LoadSceneMode.Additive);
         }
     }
 }

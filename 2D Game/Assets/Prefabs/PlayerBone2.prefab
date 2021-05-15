@@ -3831,9 +3831,16 @@ MonoBehaviour:
     currentSpawned: 
     empty: 
     Triggers: []
+    slotIndex: []
+    ItemsPositions: []
   menus: {fileID: 0}
   controller: {fileID: 0}
   PreFab: {fileID: 0}
+  cherryButton: {fileID: 0}
+  candyButton: {fileID: 0}
+  candyCandButton: {fileID: 0}
+  cottonCandyButton: {fileID: 0}
+  healthButton: {fileID: 0}
   FileName: {fileID: 1071063389}
   name: {fileID: 1395069262}
   Exist: 0
@@ -4708,6 +4715,8 @@ MonoBehaviour:
     currentSpawned: 
     empty: 
     Triggers: []
+    slotIndex: []
+    ItemsPositions: []
 --- !u!50 &2106051219863605549
 Rigidbody2D:
   serializedVersion: 4
@@ -4865,9 +4874,21 @@ MonoBehaviour:
     currentSpawned: 
     empty: 
     Triggers: []
+    slotIndex: []
+    ItemsPositions:
+    - {x: 0, y: 0}
+    - {x: 0, y: 0}
+    - {x: 0, y: 0}
+    - {x: 0, y: 0}
+    - {x: 0, y: 0}
   menus: {fileID: 2106051220772087689}
   controller: {fileID: 0}
   PreFab: {fileID: 1110227999405574708, guid: 05000d5c89f2c0f47bede42f18f1e09d, type: 3}
+  cherryButton: {fileID: 0}
+  candyButton: {fileID: 0}
+  candyCandButton: {fileID: 0}
+  cottonCandyButton: {fileID: 0}
+  healthButton: {fileID: 0}
   FileName: {fileID: 1071063389}
   name: {fileID: 1395069262}
   Exist: 0

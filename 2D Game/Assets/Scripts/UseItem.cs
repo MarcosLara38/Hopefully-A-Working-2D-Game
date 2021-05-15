@@ -31,12 +31,20 @@ public class UseItem : MonoBehaviour
                         GameObject.Destroy(child2.gameObject);
                     }
                 }
-                newObj = GameObject.Instantiate(Item);
-                newObj.transform.parent = inventory.Hand.transform;//GameObject.Find("PlayerBone").transform;
-                newObj.transform.localPosition = new Vector2(0.782f, 0.821f);
-                newObj.transform.localRotation = Quaternion.identity;
-                inventory.currentItem = Item.GetComponent<ItemAction>().itemButton.name + "(Clone)";
-                inventory.UsingWeapon = true;
+                //CHANGE HEART FUNCTION TO HEAL PLAYER INSTEAD OF PUTING IT IN THEIR HAND
+                if (Item.name == "Heart")
+                {
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().health += 4;
+                }
+                else
+                {
+                    newObj = GameObject.Instantiate(Item);
+                    newObj.transform.parent = inventory.Hand.transform;//GameObject.Find("PlayerBone").transform;
+                    newObj.transform.localPosition = new Vector2(0.782f, 0.821f);
+                    newObj.transform.localRotation = Quaternion.identity;
+                    inventory.currentItem = Item.GetComponent<ItemAction>().itemButton.name + "(Clone)";
+                    inventory.UsingWeapon = true;
+                }
             }
         }
         else if (inventory.UsingWeapon == true && inventory.currentItem == slot.item)

@@ -15,6 +15,11 @@ public class PlayerData
     public int[] currentSpawned;
     public bool[] empty;
     public GameObject[] Triggers;
+    public string[] slotIndex;
+    public Vector2[] ItemsPositions;
+    public string[] ItemName;
+    public bool[] ISFull;
+    public int Score;
 
     //public Vector2 PlayerPosition 
 
