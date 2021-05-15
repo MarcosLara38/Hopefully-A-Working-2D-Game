@@ -12,6 +12,7 @@ TagManager:
   - Trig3
   - Trig4
   - GM
+  - CreditsMenu
   layers:
   - Default
   - TransparentFX

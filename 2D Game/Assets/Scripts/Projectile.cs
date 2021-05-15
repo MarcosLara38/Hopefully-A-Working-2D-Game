@@ -9,11 +9,14 @@ public class Projectile : MonoBehaviour
     public float distance;
     public int damage;
     public LayerMask whatIsSolid;
+    Rigidbody2D rb;
+
 
     public GameObject destroyEffect;
     // Start is called before the first frame update
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         Invoke("DestroyProjectile", lifeTime);
     }
 
@@ -27,6 +30,7 @@ public class Projectile : MonoBehaviour
             {
                 Debug.Log("ENEMY MUST TAKE DAMAGE !");
                 hitInfo.collider.GetComponent<EnemyAI>().TakeDamage(damage);
+                TrackMovement();
             }
             DestroyProjectile();
         }
@@ -37,5 +41,13 @@ public class Projectile : MonoBehaviour
     {
         Instantiate(destroyEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
+    }
+
+    void TrackMovement()
+    {
+        Vector2 direction = rb.velocity;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }

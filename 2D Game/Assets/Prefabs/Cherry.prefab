@@ -307,11 +307,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577f5d39974367541bc0be7efc39e05c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: -90
   cherry: {fileID: 6896845956277657780, guid: ce7a6774dfe44e24ab5e387aa9f21ced, type: 3}
-  launchForce: 6
   shotPoint: {fileID: 4637125459772952936}
-  stateTimeBtwShots: 1
+  dirction: {x: 0, y: 0}
+  startTimeBtwShots: 0.1
+  Cherry: {fileID: 6896845956277657780, guid: ce7a6774dfe44e24ab5e387aa9f21ced, type: 3}
+  LaunchForce: 20
 --- !u!1 &3571462137725378329
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +337,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3571462137725378329}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: -0.9, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 3272349269381222712}
