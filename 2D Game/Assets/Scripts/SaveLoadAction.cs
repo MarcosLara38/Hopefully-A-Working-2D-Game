@@ -9,6 +9,7 @@ public class SaveLoadAction : MonoBehaviour
     public PlayerData so;
     public PauseMenu menus;
     public PlayerController controller;
+    public bool Loading = false;
     private int AmountOfHearts;
     private int Health;
     private float AttackSpeed;
@@ -50,32 +51,41 @@ public class SaveLoadAction : MonoBehaviour
         
         //Getting all of the items that is in the game and putting it in ITEMS
         foreach(GameObject ITEMS in GameObject.FindGameObjectsWithTag("PickableItem"))
-        {
-            //save the item[temp] position into the player data object
-            so.ItemsPositions[temp] = ITEMS.transform.position;
+        { 
+            if (ITEMS.transform.parent != null)
+            {
+                if (ITEMS.transform.parent.name != "Hand")
+                {
+                    //save the item[temp] position into the player data object
+                    so.ItemsPositions[temp] = ITEMS.transform.position;
+                    //Checks the item's name and save that name to the players data object
+                    if (ITEMS.name == Candy.name || ITEMS.name == Candy.name + "(Clone)")
+                    {
+                        so.ItemName[temp] = Candy.name;
+                    }
+                    else if (ITEMS.name == Heart.name || ITEMS.name == Heart.name + "(Clone)")
+                    {
+                        so.ItemName[temp] = Heart.name;
+                    }
+                    else if (ITEMS.name == CottonCandy.name || ITEMS.name == CottonCandy.name + "(Clone)")
+                    {
+                        so.ItemName[temp] = CottonCandy.name;
+                    }
+                    else if (ITEMS.name == CandyCane.name || ITEMS.name == CandyCane.name + "(Clone)")
+                    {
+                        so.ItemName[temp] = CandyCane.name;
+                    }
+                    else if (ITEMS.name == Cherry.name || ITEMS.name == Cherry.name + "(Clone)")
+                    {
+                        so.ItemName[temp] = Cherry.name;
+                    }
+                    temp++;
+                }
+            }
+            else
+            {
 
-            //Checks the item's name and save that name to the players data object
-            if (ITEMS.name == Candy.name || ITEMS.name == Candy.name + "(Clone)")
-            {
-                so.ItemName[temp] = Candy.name;
             }
-            else if (ITEMS.name == Heart.name || ITEMS.name == Heart.name + "(Clone)")
-            {
-                so.ItemName[temp] = Heart.name;
-            }
-            else if (ITEMS.name == CottonCandy.name || ITEMS.name == CottonCandy.name + "(Clone)")
-            {
-                so.ItemName[temp] = CottonCandy.name;
-            }
-            else if (ITEMS.name == CandyCane.name || ITEMS.name == CandyCane.name + "(Clone)")
-            {
-                so.ItemName[temp] = CandyCane.name;
-            }
-            else if (ITEMS.name == Cherry.name || ITEMS.name == Cherry.name + "(Clone)")
-            {
-                so.ItemName[temp] = Cherry.name;
-            }
-            temp++;
         }
 
         temp = 0;
@@ -165,31 +175,42 @@ public class SaveLoadAction : MonoBehaviour
         //Getting all of the items that is in the game and putting it in ITEMS
         foreach (GameObject ITEMS in GameObject.FindGameObjectsWithTag("PickableItem"))
         {
-            //save the item[temp] position into the player data object
-            so.ItemsPositions[temp] = ITEMS.transform.position;
-
-            //Checks the item's name and save that name to the players data object
-            if (ITEMS.name == Candy.name || ITEMS.name == Candy.name + "(Clone)")
+            
+            
+            if (ITEMS.transform.parent != null)
             {
-                so.ItemName[temp] = Candy.name;
+                if (ITEMS.transform.parent.name != "Hand")
+                {
+                    //save the item[temp] position into the player data object
+                    so.ItemsPositions[temp] = ITEMS.transform.position;
+                    //Checks the item's name and save that name to the players data object
+                    if (ITEMS.name == Candy.name || ITEMS.name == Candy.name + "(Clone)")
+                    {
+                        so.ItemName[temp] = Candy.name;
+                    }
+                    else if (ITEMS.name == Heart.name || ITEMS.name == Heart.name + "(Clone)")
+                    {
+                        so.ItemName[temp] = Heart.name;
+                    }
+                    else if (ITEMS.name == CottonCandy.name || ITEMS.name == CottonCandy.name + "(Clone)")
+                    {
+                        so.ItemName[temp] = CottonCandy.name;
+                    }
+                    else if (ITEMS.name == CandyCane.name || ITEMS.name == CandyCane.name + "(Clone)")
+                    {
+                        so.ItemName[temp] = CandyCane.name;
+                    }
+                    else if (ITEMS.name == Cherry.name || ITEMS.name == Cherry.name + "(Clone)")
+                    {
+                        so.ItemName[temp] = Cherry.name;
+                    }
+                    temp++;
+                }
             }
-            else if (ITEMS.name == Heart.name || ITEMS.name == Heart.name + "(Clone)")
+            else
             {
-                so.ItemName[temp] = Heart.name;
+                
             }
-            else if (ITEMS.name == CottonCandy.name || ITEMS.name == CottonCandy.name + "(Clone)")
-            {
-                so.ItemName[temp] = CottonCandy.name;
-            }
-            else if (ITEMS.name == CandyCane.name || ITEMS.name == CandyCane.name + "(Clone)")
-            {
-                so.ItemName[temp] = CandyCane.name;
-            }
-            else if (ITEMS.name == Cherry.name || ITEMS.name == Cherry.name + "(Clone)")
-            {
-                so.ItemName[temp] = Cherry.name;
-            }
-            temp++;
         }
 
         temp = 0;
@@ -325,7 +346,8 @@ public class SaveLoadAction : MonoBehaviour
             }
             else if (itemName == Cherry.name)
             {
-                Instantiate(Cherry, so.ItemsPositions[temp], Quaternion.identity);
+                //Instantiate(Cherry, so.ItemsPositions[temp], Quaternion.identity);
+                Destroy(Instantiate(Cherry, so.ItemsPositions[temp], Quaternion.identity).GetComponent<CherryWeapon>());
                 temp++;
             }
         }
@@ -386,7 +408,7 @@ public class SaveLoadAction : MonoBehaviour
         {
            
             //GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[i].GetComponent<Trigger>().enemy = so.Triggers[i];
-            //GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[i].GetComponent<Trigger>().Empty = so.empty[i];
+            GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[i].GetComponent<Trigger>().Empty = so.empty[i];
             //Debug.Log(GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[i].GetComponent<Trigger>().enemy);
         }   
 
@@ -484,7 +506,8 @@ public class SaveLoadAction : MonoBehaviour
             }
             else if (itemName == Cherry.name)
             {
-                Instantiate(Cherry, so.ItemsPositions[temp], Quaternion.identity);
+                //Instantiate(Cherry, so.ItemsPositions[temp], Quaternion.identity);
+                Destroy(Instantiate(Cherry, so.ItemsPositions[temp], Quaternion.identity).GetComponent<CherryWeapon>());
                 temp++;
             }
         }
@@ -545,7 +568,7 @@ public class SaveLoadAction : MonoBehaviour
         {
 
             //GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[i].GetComponent<Trigger>().enemy = so.Triggers[i];
-            //GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[i].GetComponent<Trigger>().Empty = so.empty[i];
+            GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[i].GetComponent<Trigger>().Empty = so.empty[i];
             //Debug.Log(GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[i].GetComponent<Trigger>().enemy);
         }
 
@@ -570,6 +593,7 @@ public class SaveLoadAction : MonoBehaviour
     public void MenuLoad()
     {
         int temp = 0;
+        Loading = true;
         Debug.Log("Trying to Menu load");
 
         //Get the selected file name from the dropdown list and call SaveManager with that name
@@ -648,7 +672,8 @@ public class SaveLoadAction : MonoBehaviour
                 }
                 else if (itemName == Cherry.name)
                 {
-                    Instantiate(Cherry, so.ItemsPositions[temp], Quaternion.identity);
+                    //Instantiate(Cherry, so.ItemsPositions[temp], Quaternion.identity);
+                    Destroy(Instantiate(Cherry, so.ItemsPositions[temp], Quaternion.identity).GetComponent<CherryWeapon>());
                     temp++;
                 }
             }
@@ -709,7 +734,7 @@ public class SaveLoadAction : MonoBehaviour
             {
 
                 //GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[i].GetComponent<Trigger>().enemy = so.Triggers[i];
-                //GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[i].GetComponent<Trigger>().Empty = so.empty[i];
+                GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[i].GetComponent<Trigger>().Empty = so.empty[i];
                 //Debug.Log(GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[i].GetComponent<Trigger>().enemy);
             }
 
@@ -723,11 +748,13 @@ public class SaveLoadAction : MonoBehaviour
                 else
                 {
                     //GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[temp].GetComponent<Trigger>().enemy = Instantiate(PreFab, positions, Quaternion.identity);
-                    Instantiate(PreFab, positions, Quaternion.identity);
+                    GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[temp].GetComponent<Trigger>().enemy = Instantiate(PreFab, positions, Quaternion.identity);
+                    //Instantiate(PreFab, positions, Quaternion.identity);
                     temp++;
                 }
             }
         }
+        Loading = false;
     }
         
 }

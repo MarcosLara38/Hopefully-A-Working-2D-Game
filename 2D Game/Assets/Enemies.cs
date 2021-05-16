@@ -128,7 +128,8 @@ public class Enemies : MonoBehaviour
     {
         if (_health <= 0)
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().score += 500; 
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().score += 500;
+            //GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[spawnIndex].GetComponent<Trigger>().Empty = true;
             Destroy(gameObject);
         }
     }

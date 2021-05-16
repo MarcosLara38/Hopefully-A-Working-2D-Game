@@ -95,6 +95,7 @@ public class Health : MonoBehaviour
         } 
         else if (health == 0)
         {
+            FindObjectOfType<AudioManager>().Play("PlayerDeath");
             for (int i = 0; i < numOfHearts; i++)
             {
                 

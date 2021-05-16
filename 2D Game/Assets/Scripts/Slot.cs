@@ -33,7 +33,7 @@ public class Slot : MonoBehaviour
     public void DropItem()
     {
         Debug.Log("DropItem is from:   " + inventory.currentItem + "   and   " + transform.GetChild(0).name);
-        var player = GameObject.Find("PlayerBone2").transform;
+        var player = GameObject.Find("Player").transform;
         if (inventory.UsingWeapon == true && inventory.currentItem != transform.GetChild(0).name)
         {
             foreach (Transform child in transform)
