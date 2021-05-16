@@ -114,6 +114,7 @@ public class EnemyAI : MonoBehaviour
         // enemy is destroy
         if (health <= 0)
         {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().score += 500;
             Destroy(gameObject);
         }
         //Debug.Log ("damage TAKEN !")

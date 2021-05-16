@@ -413,7 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 200
-  nextWaypointDistance: 3
+  nextWaypointDistance: 10
   health: 2
   startDazedTime: 0.5
 --- !u!1 &1110227999419745200
