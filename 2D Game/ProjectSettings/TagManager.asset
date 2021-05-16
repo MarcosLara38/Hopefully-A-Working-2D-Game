@@ -7,12 +7,13 @@ TagManager:
   - Enemy
   - MainMenu
   - PickableItem
-  - Trig1
-  - Trig2
-  - Trig3
-  - Trig4
   - GM
-  - CreditsMenu
+  - Slots
+  - Candy Button
+  - Candy Cane Button
+  - Cherry Button
+  - Cotton Candy Button
+  - Health Button
   layers:
   - Default
   - TransparentFX

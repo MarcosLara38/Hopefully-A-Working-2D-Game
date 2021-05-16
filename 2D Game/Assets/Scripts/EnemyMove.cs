@@ -61,7 +61,8 @@ public class EnemyMove : Enemies
                 text.transform.localPosition = new Vector2(0f, 2f);
                 text.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(PlayerData.attackDamage + " Damage");
                 moveDirection = transform.position - playerTransform.transform.position;
-                rig.AddForce(moveDirection.normalized * 325f); 
+                rig.AddForce(moveDirection.normalized * 325f);
+                currentLifePoints = _lifePoints;
                 checkHealth(_lifePoints);
             }
             else
@@ -72,13 +73,14 @@ public class EnemyMove : Enemies
                 text.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(PlayerData.attackDamage + " Damage");
                 moveDirection = transform.position - playerTransform.transform.position;
                 rig.AddForce(moveDirection.normalized * 325f);
+                currentLifePoints = _lifePoints;
                 checkHealth(_lifePoints);
             }
-            //FindObjectOfType<AudioManager>().Play("PlayerDeath");
-            currentLifePoints = _lifePoints;
+            
+            //currentLifePoints = _lifePoints;
 
         }
-        checkHealth(_lifePoints);
+        //checkHealth(_lifePoints);
 
         if (checkFollowRadius(playerTransform.position.x, transform.position.x))
         {

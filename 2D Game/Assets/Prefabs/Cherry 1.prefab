@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6896845956277657782}
   - component: {fileID: 6896845956277657783}
   - component: {fileID: 4362672559348987941}
-  - component: {fileID: -4592003836344351687}
+  - component: {fileID: 7251883365209467266}
   m_Layer: 0
   m_Name: Cherry 1
   m_TagString: Untagged
@@ -104,7 +104,7 @@ MonoBehaviour:
     m_Bits: 256
   destroyEffect: {fileID: 6478307705921773075, guid: b7f96593a36014749a260cedf6b65845,
     type: 3}
---- !u!50 &-4592003836344351687
+--- !u!50 &7251883365209467266
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -124,4 +124,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0

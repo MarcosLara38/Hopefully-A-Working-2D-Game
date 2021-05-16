@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class Inventory : MonoBehaviour
 {
@@ -15,17 +14,19 @@ public class Inventory : MonoBehaviour
     public string currentItem;
     public GameObject Hand;
     public Transform[] allChildren;
-    public Text target;
-    public int score;
-    private GameObject text;
+    int i = 0;
+    public int score = 0;
+    public Text targetName;
 
     void Start()
     {
-        allChildren = GetComponentsInChildren<Transform>();
+        allChildren = GetComponentsInChildren<Transform>(true);
+        
     }
     // Update is called once per frame
     void Update()
     {
+
         if (Hand == null)
         {
             foreach (Transform child in allChildren)
@@ -36,6 +37,7 @@ public class Inventory : MonoBehaviour
                     Hand = child.gameObject;
                     break;
                 }
+             
             }
         }
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -55,11 +57,12 @@ public class Inventory : MonoBehaviour
 
     public void inventory()
     {
+        //PREVENT INVENTORY OPENING WHEN PAUSED
         inventoryUI.SetActive(true);
+        targetName = GameObject.Find("Score").GetComponent<Text>();
+        targetName.text = "Score is " + score;
         //Time.timeScale = 0f;
         inventoryIsOn = true;
-        target = GameObject.Find("Score").GetComponent<Text>();
-        target.text = "Score is " + score;
     }
 
     public void ResumeGame()

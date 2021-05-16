@@ -16,7 +16,7 @@ public static class SaveManager
             Directory.CreateDirectory(dir);
         }
 
-        string json = JsonUtility.ToJson(so);
+        string json = JsonUtility.ToJson(so, true);
         File.WriteAllText(dir + fileName, json);
     }
 

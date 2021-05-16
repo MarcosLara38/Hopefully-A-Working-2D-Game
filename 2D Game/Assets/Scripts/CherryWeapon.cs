@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CherryWeapon : MonoBehaviour
 {
-     // Start is called before the first frame update
-     void Start()
-     {
-
-     }
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
 
     //public float offset;
     public GameObject Cherry;
@@ -20,9 +20,9 @@ public class CherryWeapon : MonoBehaviour
     //private float timeBtwShots;
     //public float startTimeBtwShots;
 
-     // Update is called once per frame
-     void Update()
-     {
+    // Update is called once per frame
+    void Update()
+    {
         //Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         //float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         //transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
@@ -41,26 +41,26 @@ public class CherryWeapon : MonoBehaviour
         FaceMouse();
 
         //if (timeBtwShots <= 0)
-         //{
-             if (Input.GetMouseButtonDown(0))
-             {
-                //Instantiate(cherry, shotPoint.position, transform.rotation);
-                //timeBtwShots = startTimeBtwShots;
-                Shoot();
-             }
-         //}
-         //else
-         //{
-             //timeBtwShots -= Time.deltaTime;
-         //}
-     }
-     //void Shoot()
-     //{
-         //GameObject newCherry = Instantiate(cherry, shotPoint.position, shotPoint.rotation);
-         //newCherry.GetComponent<Rigidbody2D>().velocity = transform.right * launchForce;
-     //}*/
+        //{
+        if (Input.GetMouseButtonDown(0))
+        {
+            //Instantiate(cherry, shotPoint.position, transform.rotation);
+            //timeBtwShots = startTimeBtwShots;
+            Shoot();
+        }
+        //}
+        //else
+        //{
+        //timeBtwShots -= Time.deltaTime;
+        //}
+    }
+    //void Shoot()
+    //{
+    //GameObject newCherry = Instantiate(cherry, shotPoint.position, shotPoint.rotation);
+    //newCherry.GetComponent<Rigidbody2D>().velocity = transform.right * launchForce;
+    //}*/
 
-    
+
     //private float timeBtwShots;
     //public float startTimeBtwShots;
     //public GameObject Cherry;
