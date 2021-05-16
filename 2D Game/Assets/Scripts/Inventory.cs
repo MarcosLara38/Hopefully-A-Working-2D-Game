@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class Inventory : MonoBehaviour
     public string currentItem;
     public GameObject Hand;
     public Transform[] allChildren;
+    public Text target;
+    public int score;
+    private GameObject text;
 
     void Start()
     {
@@ -54,6 +58,8 @@ public class Inventory : MonoBehaviour
         inventoryUI.SetActive(true);
         //Time.timeScale = 0f;
         inventoryIsOn = true;
+        target = GameObject.Find("Score").GetComponent<Text>();
+        target.text = "Score is " + score;
     }
 
     public void ResumeGame()

@@ -122,6 +122,7 @@ public class Enemies : MonoBehaviour
     {
         if (_health <= 0)
         {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().score += 500;
             Destroy(gameObject);
         }
     }

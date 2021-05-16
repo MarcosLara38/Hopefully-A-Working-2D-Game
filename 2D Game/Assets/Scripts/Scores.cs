@@ -24,7 +24,7 @@ public class Scores : MonoBehaviour
         {
             score += 500;
         }
-        thisText.text = "Score is " + score;
+        //thisText.text = "Score is " + score;
 
     }
 }
