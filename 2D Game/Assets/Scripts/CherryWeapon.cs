@@ -19,7 +19,7 @@ public class CherryWeapon : MonoBehaviour
 
     //private float timeBtwShots;
     //public float startTimeBtwShots;
-
+    public GameObject playerUI;
     // Update is called once per frame
     void Update()
     {
@@ -42,11 +42,15 @@ public class CherryWeapon : MonoBehaviour
 
         //if (timeBtwShots <= 0)
         //{
-        if (Input.GetMouseButtonDown(0))
+        Debug.Log(GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetComponent<PauseMenu>().GameIsPaused);
+        if (GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetComponent<PauseMenu>().GameIsPaused == false && GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetComponent<PauseMenu>().InsideOfInventory == false)
         {
-            //Instantiate(cherry, shotPoint.position, transform.rotation);
-            //timeBtwShots = startTimeBtwShots;
-            Shoot();
+            if (Input.GetMouseButtonDown(0))
+            {
+                //Instantiate(cherry, shotPoint.position, transform.rotation);
+                //timeBtwShots = startTimeBtwShots;
+                Shoot();
+            }
         }
         //}
         //else

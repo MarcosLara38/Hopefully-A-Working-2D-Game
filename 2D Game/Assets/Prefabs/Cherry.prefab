@@ -310,6 +310,8 @@ MonoBehaviour:
   Cherry: {fileID: 6896845956277657780, guid: ce7a6774dfe44e24ab5e387aa9f21ced, type: 3}
   dirction: {x: 0, y: 0}
   LaunchForce: 20
+  playerUI: {fileID: 1567276960971523689, guid: 7d176b97370c1464abee82b1690e2305,
+    type: 3}
 --- !u!1 &3571462137725378329
 GameObject:
   m_ObjectHideFlags: 0

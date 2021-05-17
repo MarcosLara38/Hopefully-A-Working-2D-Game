@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemies : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class Enemies : MonoBehaviour
     int lifePoints;
     float attackRadius;
     float attackSpeed;
+    int Score;
+
+    void Start()
+    {
+    }
 
     //movement
     float followRadius;
@@ -122,6 +128,8 @@ public class Enemies : MonoBehaviour
     {
         if (_health <= 0)
         {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().score += 500;
+            //GameObject.Find("SpawnManager").GetComponent<SpawnManager>().triggers[spawnIndex].GetComponent<Trigger>().Empty = true;
             Destroy(gameObject);
         }
     }

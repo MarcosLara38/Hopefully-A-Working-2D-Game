@@ -7,7 +7,7 @@ public class EndGame : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other)
     {
-        float score = GetComponent<Inventory>().score;
+        float score = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().score;
         if (score == 3000)
         {
             SceneManager.LoadScene(2);
