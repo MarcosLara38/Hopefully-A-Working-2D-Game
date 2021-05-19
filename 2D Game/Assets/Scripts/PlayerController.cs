@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
         {
             Running = 1f;
         }
-
+    /*
         if (Input.GetKeyDown(KeyCode.F))
         {
             myPlayer.health--;
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
         {
             myPlayer.numOfHearts--;
         }
-        
+        */
         if (movement < 0)
         {
             m_FacingRight = false;
@@ -168,6 +168,8 @@ public class PlayerController : MonoBehaviour
 
     }
 
+ 
+
     void FixedUpdate()
     {
         transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * MovementSpeed * Running;
@@ -177,7 +179,14 @@ public class PlayerController : MonoBehaviour
             rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
             jump = false;
             groundCheck = true;
+            animator.SetBool("IsJumping", true);
         }
+
+        else if (jump == false)
+        {
+            animator.SetBool("IsJumping", false);
+        }
+
 
         if (attacking)
         {
