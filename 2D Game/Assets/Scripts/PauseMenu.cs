@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject SaveMenuUI;
     public GameObject LoadMenuUI;
     public bool GameIsPaused = false;
+    public bool InsideOfInventory = false;
 
     void Update()
     {
@@ -29,6 +30,7 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         PauseMenuUI.SetActive(true);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = false;
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
@@ -39,6 +41,7 @@ public class PauseMenu : MonoBehaviour
         OptionMenuUI.SetActive(false);
         SaveMenuUI.SetActive(false);
         LoadMenuUI.SetActive(false);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = true;
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -49,6 +52,7 @@ public class PauseMenu : MonoBehaviour
         OptionMenuUI.SetActive(false);
         SaveMenuUI.SetActive(false);
         LoadMenuUI.SetActive(false);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = true;
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }

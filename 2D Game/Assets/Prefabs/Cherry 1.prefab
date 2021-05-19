@@ -101,7 +101,7 @@ MonoBehaviour:
   damage: 1
   whatIsSolid:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   destroyEffect: {fileID: 6478307705921773075, guid: b7f96593a36014749a260cedf6b65845,
     type: 3}
 --- !u!50 &7251883365209467266

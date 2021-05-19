@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     public GameObject inventoryUI;
+    public GameObject playerUI;
     public PauseMenu pause;
     public bool inventoryIsOn = false;
     public bool[] isFull;
@@ -32,7 +33,7 @@ public class Inventory : MonoBehaviour
             foreach (Transform child in allChildren)
             {
                // Debug.Log(child);
-                if (child.name == "bone_6")
+                if (child.name == "Hand")
                 {
                     Hand = child.gameObject;
                     break;
@@ -42,14 +43,17 @@ public class Inventory : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if (inventoryIsOn)
+            if (playerUI.GetComponent<PauseMenu>().GameIsPaused != true)
             {
-                ResumeGame();
-            }
-            else
-            {
-                //Debug.Log("Tab is pressed");
-                inventory();
+                if (inventoryIsOn)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    //Debug.Log("Tab is pressed");
+                    inventory();
+                }
             }
         }
 
@@ -61,14 +65,18 @@ public class Inventory : MonoBehaviour
         inventoryUI.SetActive(true);
         targetName = GameObject.Find("Score").GetComponent<Text>();
         targetName.text = "Score is " + score;
-        //Time.timeScale = 0f;
+        Time.timeScale = 0f;
         inventoryIsOn = true;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = false;
+        GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetComponent<PauseMenu>().InsideOfInventory = true;
     }
 
     public void ResumeGame()
     {
         inventoryUI.SetActive(false);
-        //Time.timeScale = 1f;
+        Time.timeScale = 1f;
         inventoryIsOn = false;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = true;
+        GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetComponent<PauseMenu>().InsideOfInventory = false;
     }
 }

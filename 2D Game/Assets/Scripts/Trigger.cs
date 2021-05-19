@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Trigger : MonoBehaviour
 {
-    public bool EnemySpawned = false;
+    public bool SpawnningEnemy = false;
     public bool Empty = true;
     public int trigIndex = 0;
     public GameObject enemy;
@@ -14,7 +14,11 @@ public class Trigger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            EnemySpawned = true;
+            if(GameObject.Find("SpawnManager").GetComponent<SpawnManager>().CurrentSpawned[trigIndex] == 0 && enemy == null)
+            {
+                SpawnningEnemy = true;
+            }
+            
         }
     }
 

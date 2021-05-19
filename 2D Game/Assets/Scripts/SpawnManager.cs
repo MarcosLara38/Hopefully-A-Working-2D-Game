@@ -7,7 +7,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject enemyPrefab;
     private int spawnIndex;
-    private Transform[] spawnpoints;
+    public Transform[] spawnpoints;
     public int[] CurrentSpawned;
     public GameObject[] triggers;
     private Vector3 spawnPos;
@@ -39,19 +39,29 @@ public class SpawnManager : MonoBehaviour
 
         foreach (GameObject trig in triggers)
         {
-            if(trig.GetComponent<Trigger>().EnemySpawned == true)
+            if(trig.GetComponent<Trigger>().SpawnningEnemy == true)
             {
                 //Debug.Log("in Foreach");
                 spawnIndex = trig.GetComponent<Trigger>().trigIndex;    
-                trig.GetComponent<Trigger>().EnemySpawned = false;
+                trig.GetComponent<Trigger>().SpawnningEnemy = false;
                 spawnEnemys();
                         
             }
-        }    
+            if (trig.GetComponent<Trigger>().enemy == null && GameObject.FindGameObjectWithTag("Player").GetComponent<SaveLoadAction>().Loading == false)
+            {
+                CurrentSpawned[trig.GetComponent<Trigger>().trigIndex] = 0;
+                trig.GetComponent<Trigger>().Empty = true;
+            }
+
+        }
+
+       
     }
 
     public void spawnEnemys()
     {
+
+
         //spawnIndex = Random.Range(0, count);
         if (CurrentSpawned[spawnIndex] >= 1 && triggers[spawnIndex].GetComponent<Trigger>().Empty == false)
         {
