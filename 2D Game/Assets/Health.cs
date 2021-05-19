@@ -25,7 +25,7 @@ public class Health : MonoBehaviour
             numOfHearts = 7;
         }
         if(numOfHearts < 0)
-        {
+        {   
             numOfHearts = 0;
         }
         if(health > numOfHearts*4)
@@ -95,11 +95,16 @@ public class Health : MonoBehaviour
         } 
         else if (health == 0)
         {
+            FindObjectOfType<AudioManager>().Play("PlayerDeath");
             for (int i = 0; i < numOfHearts; i++)
             {
+                
                 hearts[i].sprite = emptyHeart;
-                Application.LoadLevel(Application.loadedLevel);
-            }         
+       
+            }   
+            //NEED TO RELOAD LAST SAVE
+            GameObject.FindGameObjectWithTag("Player").GetComponent<SaveLoadAction>().MenuLoad();
+            //Application.LoadLevel(Application.loadedLevel);
         }
 
     }

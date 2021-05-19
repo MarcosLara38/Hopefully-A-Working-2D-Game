@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Scores : MonoBehaviour
 {
-    private Text thisText;
+    public Text thisText;
     public int score;
 
     // Start is called before the first frame update
@@ -14,7 +14,7 @@ public class Scores : MonoBehaviour
     {
         thisText = GetComponent<Text>();
 
-        score = 0;
+        //score = 0;
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class Scores : MonoBehaviour
         {
             score += 500;
         }
-        thisText.text = "Score is " + score;
+        //thisText.text = "Score is " + score;
 
     }
 }

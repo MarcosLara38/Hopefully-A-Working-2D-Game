@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -3682043776342367445}
   m_Layer: 5
   m_Name: Health Button
-  m_TagString: Untagged
+  m_TagString: Health Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

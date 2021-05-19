@@ -9,11 +9,13 @@ public class PlayerAttack : MonoBehaviour
     public void Attack(int _damage, float _range, float Xdir, float Ydir)
     {
         direction = new Vector2(Xdir, Ydir);
+        Vector2 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        this.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
         this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-        RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, direction);
-        Debug.DrawRay(this.gameObject.transform.position, direction * _range, Color.green);
+        RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, difference);//direction);
+        Debug.DrawRay(this.gameObject.transform.position, difference * _range, Color.green);
         if (hit.distance <= _range)
         {
             if (hit.collider != null)
@@ -25,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        this.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
         this.gameObject.GetComponent<CircleCollider2D>().enabled = true;
 
     }

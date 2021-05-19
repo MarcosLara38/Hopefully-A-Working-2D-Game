@@ -6,7 +6,7 @@ public class Spawn : MonoBehaviour
 {
     public GameObject Item;
     private Transform player;
-
+    private GameObject temp;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,8 @@ public class Spawn : MonoBehaviour
     public void SpawnDroppedItem()
     {
         Vector2 playerPos = new Vector2(player.position.x, player.position.y);
-        Instantiate(Item, playerPos, Quaternion.identity);
+        temp = Instantiate(Item, playerPos, Quaternion.identity);
+        Destroy(temp.GetComponent<CherryWeapon>());
     }
 
 
